@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "SumoLogicRum", type: .static, targets: ["SumoLogicRum"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/kkruk-sumo/opentelemetry-swift", revision: "6a0ceb776efbe8de0eedde9f0399009190756b49"),
+        .package(url: "https://github.com/kkruk-sumo/opentelemetry-swift", from: "100.0.0"),
         .package(url: "https://github.com/microsoft/plcrashreporter", from: "1.10.1"),
     ],
     targets: [
