@@ -33,10 +33,10 @@ struct SpanAdapter {
         return resourceSpans
     }
     
-    private static func groupByResourceAndLibrary(spanDataList: [SpanData]) -> [Resource: [InstrumentationLibraryInfo: [Otlp.Span]]] {
-        var result = [Resource: [InstrumentationLibraryInfo: [Otlp.Span]]]()
+    private static func groupByResourceAndLibrary(spanDataList: [SpanData]) -> [Resource: [InstrumentationScopeInfo: [Otlp.Span]]] {
+        var result = [Resource: [InstrumentationScopeInfo: [Otlp.Span]]]()
         spanDataList.forEach {
-            result[$0.resource, default: [InstrumentationLibraryInfo: [Otlp.Span]]()][$0.instrumentationLibraryInfo, default: [Otlp.Span]()]
+            result[$0.resource, default: [InstrumentationScopeInfo: [Otlp.Span]]()][$0.instrumentationScope, default: [Otlp.Span]()]
                 .append(toOtlpSpan(spanData: $0))
         }
         return result
