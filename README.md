@@ -12,7 +12,7 @@
 Use Swift Package Manager through XCode (Project -> Package Dependencies) or by modifying `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/SumoLogic/sumologic-opentelemetry-ios", from: "1.0.0")
+.package(url: "https://github.com/SumoLogic/sumologic-opentelemetry-ios", from: "1.2.0")
 ```
 
 Then initialize this library by calling `SumoLogicRum.initialize`, ideally in `App.init` or `AppDelegate.didFinishLaunchingWithOptions`.

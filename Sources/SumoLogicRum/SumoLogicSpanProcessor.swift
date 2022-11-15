@@ -18,7 +18,7 @@ class SumoLogicSpanProcessor: SpanProcessor {
     public func onStart(parentContext: SpanContext?, span: ReadableSpan) {
         let traceId = span.context.traceId
         let numberOfSpans = tracesSpansAmount[traceId]
-        if numberOfSpans != nil || span.instrumentationLibraryInfo.name == "ui" {
+        if numberOfSpans != nil || span.instrumentationScopeInfo.name == "ui" {
             tracesSpansAmount[traceId] = (numberOfSpans ?? 0) + 1
         }
         
