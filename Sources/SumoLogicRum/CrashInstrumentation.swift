@@ -5,10 +5,10 @@ import OpenTelemetrySdk
 
 class CrashInstrumentation {
     init(logsExporter: SumoLogicLogsExporter) {
-        if getppid() != 1 {
-            print("SumoLogicRum crash instrumentation is disabled because running debugger was detected")
-            return
-        }
+//        if getppid() != 1 {
+//            print("SumoLogicRum crash instrumentation is disabled because running debugger was detected")
+//            return
+//        }
         
         let config = PLCrashReporterConfig(signalHandlerType: .mach, symbolicationStrategy: .all)
         guard let crashReporter = PLCrashReporter(configuration: config) else {
