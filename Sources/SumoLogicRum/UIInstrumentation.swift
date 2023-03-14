@@ -132,7 +132,7 @@ fileprivate var tracer: Tracer?
 
 class UIInstrumentation {
     public init() {
-        tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "ui", instrumentationVersion: "0.0.1")
+        tracer = OpenTelemetry.instance.tracerProvider.get(instrumentationName: "ui", instrumentationVersion: "0.0.1")
         
         swizzle(cls: UIApplication.self, original: #selector(UIApplication.sendAction(_:to:from:for:)), swizzled: #selector(UIApplication.sumoLogicRum_sendAction(_:to:from:for:)))
         swizzle(cls: UIApplication.self, original: #selector(UIApplication.sendEvent(_:)), swizzled: #selector(UIApplication.sumoLogicRum_sendEvent(_:)))

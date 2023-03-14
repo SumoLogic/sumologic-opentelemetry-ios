@@ -12,7 +12,7 @@
 Use Swift Package Manager through XCode (Project -> Package Dependencies) or by modifying `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/SumoLogic/sumologic-opentelemetry-ios", from: "1.2.0")
+.package(url: "https://github.com/SumoLogic/sumologic-opentelemetry-ios", from: "1.3.0")
 ```
 
 Then initialize this library by calling `SumoLogicRum.initialize`, ideally in `App.init` or `AppDelegate.didFinishLaunchingWithOptions`.
@@ -45,7 +45,7 @@ Use standard OpenTelemetry-Swift API to create spans manually:
 import OpenTelemetryApi
 import OpenTelemetrySdk
 
-let tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "app", instrumentationVersion: "0.0.1")
+let tracer = OpenTelemetry.instance.tracerProvider.get(instrumentationName: "app", instrumentationVersion: "0.0.1")
 
 let span = tracer.spanBuilder(spanName: "your operation name").startSpan()
 OpenTelemetry.instance.contextProvider.setActiveSpan(span)
