@@ -29,7 +29,7 @@ class CrashInstrumentation {
 
                 // Retrieving crash reporter data.
                 let report = try PLCrashReport(data: data)
-                let tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "crash", instrumentationVersion: "0.0.1")
+                let tracer = OpenTelemetry.instance.tracerProvider.get(instrumentationName: "crash", instrumentationVersion: "0.0.1")
                 let span = tracer.spanBuilder(spanName: "crash").setNoParent().setStartTime(time: report.systemInfo.timestamp).startSpan()
                 var eventAttributes: [String: AttributeValue] = [
                     "signalName": .string(report.signalInfo.name),

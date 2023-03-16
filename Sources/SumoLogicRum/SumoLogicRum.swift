@@ -28,12 +28,16 @@ public struct SumoLogicRum {
             attributes["application"] = AttributeValue.string(applicationName!)
         }
         resource.merge(other: Resource(attributes: attributes))
-        OpenTelemetrySDK.instance.tracerProvider.updateActiveResource(resource)
 
         let otlpTraceExporter = SumoLogicOtlpTraceExporter(options: SumoLogicOtlpExporterOptions(endpoint: collectionSourceUrl))
-        
         let spanProcessor = SumoLogicSpanProcessor(spanExporter: otlpTraceExporter)
-        OpenTelemetrySDK.instance.tracerProvider.addSpanProcessor(spanProcessor)
+
+        OpenTelemetry.registerTracerProvider(tracerProvider:
+            TracerProviderBuilder()
+                .add(spanProcessor: spanProcessor)
+                .with(resource: resource)
+                .build()
+        )
         
         logsExporter = SumoLogicLogsExporter(options: SumoLogicLogsExporterOptions(resource: resource, endpoint: "\(collectionSourceUrl)/v1/logs", maxQueueSize: 50, scheduledDelay: 2.0))
         

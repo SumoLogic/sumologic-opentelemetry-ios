@@ -45,7 +45,7 @@ class AppLoadInstrumentation {
     private let tracer: Tracer
     
     public init() {
-        tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "app-load", instrumentationVersion: "0.0.1")
+        tracer = OpenTelemetry.instance.tracerProvider.get(instrumentationName: "app-load", instrumentationVersion: "0.0.1")
         
         let startTime = (try? processStartTime()) ?? fileStartTime
         let span = tracer.spanBuilder(spanName: "appLoad").setStartTime(time: startTime).startSpan()
